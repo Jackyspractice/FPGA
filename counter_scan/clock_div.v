@@ -20,6 +20,6 @@ begin
 end
 
 assign clk_out = q[26];
-assign clk_scan = q[3];
+assign clk_scan = q[23];
 
 endmodule

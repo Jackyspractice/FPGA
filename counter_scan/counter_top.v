@@ -30,6 +30,7 @@ wire [1:0] which;
 //uut
 control scan_which(
     .clk(clk_12HZ),
+    .clr(clr),
 
     .sel(which)
 );
