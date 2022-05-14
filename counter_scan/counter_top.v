@@ -19,6 +19,7 @@ module counter_top(
 
 //function output
 wire clk_1HZ;
+wire clk_12HZ;
 wire btn_db;//change mode
 wire load_db;
 wire [7:0] data_out;
@@ -28,7 +29,7 @@ wire [1:0] which;
 
 //uut
 control scan_which(
-    .clk(clk),
+    .clk(clk_12HZ),
 
     .sel(which)
 );
@@ -66,7 +67,8 @@ clock_div_1HZ clkdiv(
     .mclk(clk),
     .clr(clr),
 
-    .clk_out(clk_1HZ)
+    .clk_out(clk_1HZ),
+    .clk_scan(clk_12HZ)
 );
 
 counter counter(
