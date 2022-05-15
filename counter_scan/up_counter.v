@@ -22,7 +22,7 @@ begin
         if (q == 0 && mode == 1)
             q <= 8'b1111_1111;
         
-        if (clr) begin
+        else if (clr) begin
             q <= 8'b0000_0000;
             mode <= 0; //up
         end
