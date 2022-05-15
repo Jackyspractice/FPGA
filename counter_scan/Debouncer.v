@@ -11,7 +11,7 @@ module debounce(
      reg delay2;
      reg delay3;
 
-     always @(posedge clk or posedge clr)
+     always @(posedge clk)
      begin
 
         delay1 <= inp;

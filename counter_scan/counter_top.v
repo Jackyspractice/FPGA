@@ -31,7 +31,6 @@ wire [1:0] which;
 //uut
 control scan_which(
     .clk(clk_12HZ),
-    .clr(clr_db),
 
     .sel(which)
 );
@@ -72,7 +71,6 @@ debounce db_load(
 
 clock_div_1HZ clkdiv(
     .mclk(clk),
-    .clr(clr_db),
 
     .clk_out(clk_1HZ),
     .clk_scan(clk_12HZ)
