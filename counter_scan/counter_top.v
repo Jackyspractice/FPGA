@@ -22,6 +22,7 @@ wire clk_1HZ;
 wire clk_12HZ;
 wire btn_db;//change mode
 wire load_db;
+wire clr_db;
 wire [7:0] data_out;
 wire [3:0] mux_out;
 wire [1:0] which;
@@ -30,7 +31,7 @@ wire [1:0] which;
 //uut
 control scan_which(
     .clk(clk_12HZ),
-    .clr(clr),
+    .clr(clr_db),
 
     .sel(which)
 );
@@ -51,22 +52,27 @@ sev_scan sev_scan(
 debounce db_choose(
     .inp(btn),
     .clk(clk),
-    .clr(clr),
 
     .outp(btn_db)
+);
+
+debounce db_clr(
+    .inp(clr),
+    .clk(clk),
+
+    .outp(clr_db)
 );
 
 debounce db_load(
     .inp(load),
     .clk(clk),
-    .clr(clr),
 
     .outp(load_db)
 );
 
 clock_div_1HZ clkdiv(
     .mclk(clk),
-    .clr(clr),
+    .clr(clr_db),
 
     .clk_out(clk_1HZ),
     .clk_scan(clk_12HZ)
@@ -76,7 +82,7 @@ counter counter(
     .data(data),
     .load(load_db),
     .enable(enable),
-    .clr(clr),
+    .clr(clr_db),
     .clk(clk_1HZ),
     .choose(btn_db),
 
