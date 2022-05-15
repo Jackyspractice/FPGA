@@ -6,10 +6,10 @@ module mux4to1(
 );
 
 always @(*)begin
-    if (sel == 2'b00) outp = in[3:0];
-    if (sel == 2'b01) outp = in[7:4];
-    if (sel == 2'b10) outp = 0;
-    if (sel == 2'b11) outp = 0;
+    if (sel == 2'b00) outp <= in[3:0];
+    if (sel == 2'b01) outp <= in[7:4];
+    if (sel == 2'b10) outp <= 4'b0000;
+    if (sel == 2'b11) outp <= 4'b0000;
 end
 
 endmodule

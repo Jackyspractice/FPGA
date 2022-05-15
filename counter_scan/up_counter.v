@@ -22,15 +22,18 @@ begin
         if (q == 0 && mode == 1)
             q <= 8'b1111_1111;
         
-        else if (clr) begin
+        if (clr) begin
             q <= 8'b0000_0000;
             mode <= 0; //up
         end
-        else if (load == 1)
+        
+        if (load == 1)
             q <= data;
-        else if (mode == 0)
+        
+        if (mode == 0)
             q <= q + 1;
-        else if (mode == 1)
+        
+        if (mode == 1)
             q <= q - 1;
     end
     
