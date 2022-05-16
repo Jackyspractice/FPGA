@@ -11,35 +11,34 @@ output reg [7:0] q );
 
 reg mode;
 
-always @(posedge clk or posedge clr or posedge load)
-//problem: when accedicent push error button, the counter will still react
-//solution: ?
-//enable: switch
-begin
+always @(posedge clk or posedge load or posedge clr) begin
 
-    if (enable) begin //enable is on 
+    if (clr) q <= 0;
 
-        if (q == 0 && mode == 1)
-            q <= 8'b1111_1111;
-        
-        if (clr) begin
-            q <= 8'b0000_0000;
-            mode <= 0; //up
+    else if (load) q <= data;
+
+    else if (enable) begin
+
+        if (mode == 0) q <= q + 1;
+
+        else begin
+
+            if (q == 0) q <= 8'b1111_1111;
+
+            else q <= q - 1;
+
         end
-        
-        if (load == 1)
-            q <= data;
-        
-        if (mode == 0)
-            q <= q + 1;
-        
-        if (mode == 1)
-            q <= q - 1;
     end
-    
+
+
 end
 
-always @(posedge choose) mode <= mode + 1;
+always @(posedge choose or posedge clr) begin
 
+    if (clr) mode <= 0;
+
+    else if (choose) mode <= mode + 1;
+
+end
 
 endmodule
