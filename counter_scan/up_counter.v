@@ -20,25 +20,15 @@ always @(posedge clk or posedge load or posedge clr) begin
     else if (enable) begin
 
         if (mode == 0) q <= q + 1;
-
         else begin
 
             if (q == 0) q <= 8'b1111_1111;
-
             else q <= q - 1;
 
         end
     end
-
-
 end
 
-always @(posedge choose or posedge clr) begin
 
-    if (clr) mode <= 0;
-
-    else if (choose) mode <= mode + 1;
-
-end
 
 endmodule
